@@ -10,11 +10,7 @@ function initRoutes(app){
     // })
     app.get('/',homeController().index);
 
-    // app.get('/cart',function(req,res){
-    //     res.render('customers/cart');
-    // })
-    app.get('/cart',cartController().index);
-
+  
 
     // app.get('/login',function(req,res){
     //     res.render('auth/login');
@@ -29,6 +25,14 @@ function initRoutes(app){
     //     res.render('auth/register');
     // })
     app.get('/register',authController().register);
+
+
+      // app.get('/cart',function(req,res){
+    //     res.render('customers/cart');
+    // })
+    app.get('/cart',cartController().index);
+    app.post('/update-cart',cartController().update);
+
 }
 
 

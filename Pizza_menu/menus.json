@@ -1,0 +1,66 @@
+[
+    {
+       "_id":"507f191e810c19729de860ea",
+        "name":"Margherita" ,
+        "image":"margherita.jpg",
+        "price":500,
+        "size":"Medium"
+    },
+    {
+        "_id":"507f1f77bcf86cd799439011",
+         "name":"farmhouse" ,
+         "image":"farmhouse.jpg",
+         "price":500,
+         "size":"Medium"
+     },
+     {
+        "_id":"7",
+         "name":"Indian Tandoori Paneer" ,
+         "image":"IndianTandooriPneer.jpg",
+         "price":500,
+         "size":"Medium"
+     }
+     , {
+        "_id":"1",
+         "name":"Gexican Green Wave" ,
+         "image":"mexican-green-wave-pizza.jpg",
+         "price":500,
+         "size":"Medium"
+     }
+     , {
+        "_id":"2",
+         "name":"Panner Special" ,
+         "image":"paneer-special-pizza.jpg",
+         "price":500,
+         "size":"Medium"
+     }
+     , {
+        "_id":"3",
+         "name":"Pepper Pizza" ,
+         "image":"pepper-pizza.jpg",
+         "price":500,
+         "size":"Medium"
+     }
+     , {
+        "_id":"4",
+         "name":"Peppy Panner" ,
+         "image":"peppypaneer.jpg",
+         "price":500,
+         "size":"Medium"
+     }
+     , {
+        "_id":"5",
+         "name":"Veg Extravaganza" ,
+         "image":"veg-extravanza-pizza.jpg",
+         "price":500,
+         "size":"Medium"
+     }
+     , {
+        "_id":"6",
+         "name":"Veggie Deluxe" ,
+         "image":"veggie-deluxe-pizza.jpg",
+         "price":500,
+         "size":"Medium"
+     }
+
+]

@@ -2,12 +2,12 @@
 function authController(){
     return {
         login: function (req,res){
-            res.render('auth/login');
+            return res.render('auth/login');
 
         },
 
         register:function(req,res){
-            res.render('auth/register');
+           return  res.render('auth/register');
         }
     }
 }
