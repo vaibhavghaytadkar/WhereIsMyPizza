@@ -1,0 +1,1 @@
+console.log("helooo fron resources js");
