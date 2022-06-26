@@ -11,6 +11,7 @@ function updateCart(pizza){
     axios.post('/update-cart',pizza).then(function(res){
         // console.log(res);
         cartCounter.innerText = res.data.totalQty ; 
+        // console.log(  cartCounter.innerText);
         new Noty({
             type:'success',
             timeout:1000,
@@ -20,11 +21,14 @@ function updateCart(pizza){
           }).show();
        
     })
+    console.log('updating cart......');
 }
+
 addToCart.forEach((btn)=>{
     btn.addEventListener('click',(e)=>{
         // console.log('clicked');
         let pizza = JSON.parse(btn.dataset.pizza);
+        console.log('pizza is' , pizza);
          updateCart(pizza);
 
         // console.log('pizza--from app.js' ,pizza);

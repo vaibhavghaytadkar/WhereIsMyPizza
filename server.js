@@ -20,7 +20,7 @@ const flash = require('express-flash');
 const MongoDbStore=require('connect-mongo');
 
 
-
+const passport=require('passport');
 
 //database connection 
 const url='mongodb://localhost/WhereIsMyPizaa';
@@ -29,24 +29,26 @@ const url='mongodb://localhost/WhereIsMyPizaa';
 
 // const Connection = mongoose.connection;
 // Connection.once('open', () =>{
-//     console.log('Database connected...');
-// }).catch(err =>{
-//     console.log('Connection Failed...')
-// });
+  //     console.log('Database connected...');
+  // }).catch(err =>{
+    //     console.log('Connection Failed...')
+    // });
+    
+    mongoose.connect(url,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
+      (err) => {
+        if (err) throw err;
+        console.log("Connected to Database...");
+      }
+      );
 
-mongoose.connect(url,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) throw err;
-    console.log("Connected to Database...");
-  }
-);
-
-//session store
-
+   
+      
+      //session store
+      
 let mongoStore=  MongoDbStore.create({
     mongoUrl:url,
     // dbName: WhereIsMyPizza,
@@ -64,16 +66,25 @@ app.use(session({
     cookie:{maxAge:1000*60*60*24}
 }))
 
+   //passport config---it should be after session config
+   const passportInit = require('./app/config/passport');
+   passportInit(passport);
+   app.use(passport.initialize());
+   app.use(passport.session());
+
+
 app.use(flash());
 
 
 //Assets
 app.use(express.static('public'));
+app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 //global middleware
 app.use((req,res,next)=>{
     res.locals.session = req.session ;
+    res.locals.user = req.user ;
     next();
     
 })
