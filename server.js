@@ -106,7 +106,7 @@ app.set('view engine','ejs');
 //Routes
 require('./routes/web')(app);
 app.use((req,res)=>{
-  res.status(404).send('<h1>404, Page not found </h1>')
+  res.status(404).render('errors/404')
 })
 
 
