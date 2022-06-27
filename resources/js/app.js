@@ -81,7 +81,7 @@ updateStatus(order);
 
 //client side of socket connection
 let socket = io()
-initAdmin(socket);
+
 // join
 if(order){
    
@@ -90,6 +90,7 @@ if(order){
 let adminAreaPath = window.location.pathname;
 console.log('url name : ',adminAreaPath);
 if(adminAreaPath.includes('admin')){
+    initAdmin(socket);
     socket.emit('join','adminRoom')
 }
 socket.on('orderUpdated',(data)=>{

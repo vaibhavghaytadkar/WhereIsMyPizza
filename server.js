@@ -25,7 +25,8 @@ const passport=require('passport');
 const Emitter= require('events');
 
 //database connection 
-const url='mongodb://localhost/WhereIsMyPizaa';
+// const url= 'mongodb://localhost/WhereIsMyPizaa';
+const url= process.env.MONGO_CONNECTION_URL;
 
 
 
@@ -42,19 +43,22 @@ const url='mongodb://localhost/WhereIsMyPizaa';
         useUnifiedTopology: true,
       },
       (err) => {
-        if (err) throw err;
+        if (err){
+          console.log(" Not Connected to Database...");
+          throw err;
+          
+        } 
         console.log("Connected to Database...");
       }
       );
-
-   
+     
       
       //session store
       
 let mongoStore=  MongoDbStore.create({
     mongoUrl:url,
     // dbName: WhereIsMyPizza,
-    // mongooseConnection:mongoose.connection,
+    mongooseConnection:mongoose.connection,
     collection:'sessions'
 })
 
@@ -101,7 +105,9 @@ app.set('view engine','ejs');
 
 //Routes
 require('./routes/web')(app);
-
+app.use((req,res)=>{
+  res.status(404).send('<h1>404, Page not found </h1>')
+})
 
 
 const server= app.listen(PORT,()=>{
@@ -126,4 +132,8 @@ io.on('connection',(socket)=>{
 
 eventEmitter.on('orderUpdated',(data)=>{
    io.to(`order_${data.id}`).emit('orderUpdated',data);
+})
+
+eventEmitter.on('orderPlaced',(data)=>{
+  io.to('adminRoom').emit('orderPlaced',data)
 })
