@@ -22,6 +22,8 @@ const MongoDbStore=require('connect-mongo');
 
 const passport=require('passport');
 
+const Emitter= require('events');
+
 //database connection 
 const url='mongodb://localhost/WhereIsMyPizaa';
 
@@ -56,6 +58,9 @@ let mongoStore=  MongoDbStore.create({
     collection:'sessions'
 })
 
+//event emitter
+const eventEmitter =new Emitter();
+app.set('eventEmitter',eventEmitter)
 
 //session config
 app.use(session({
@@ -95,9 +100,30 @@ app.set('views',path.join(__dirname,'/resources/views'));
 app.set('view engine','ejs');
 
 //Routes
-require('./routes/web')(app)
+require('./routes/web')(app);
 
 
-app.listen(PORT,()=>{
+
+const server= app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`);
+})
+
+
+//Socket
+
+const io = require('socket.io')(server);
+
+io.on('connection',(socket)=>{
+  //join a separate room
+
+  console.log('socket id ',socket.id)
+  socket.on('join',(orderId)=>{
+    console.log(orderId);
+
+    socket.join(orderId)
+  })
+})
+
+eventEmitter.on('orderUpdated',(data)=>{
+   io.to(`order_${data.id}`).emit('orderUpdated',data);
 })

@@ -75,6 +75,22 @@ export function initAdmin(){
         `
         }).join('')
     }
+    let socket =io();
+    socket.on('orderPlaced',(order)=>{
+        new Noty({
+            type:'success',
+            timeout:1000,
+            text:'New Order',
+            progressBar:false,
+            layout:'topRight'
+          }).show();
+
+          orders.unshift(order);
+
+          orderTableBody.innerHTML = '';
+          orderTableBody.innerHTML = generateMarkup(orders);
+
+    })
 }
 
 //  module.exports=initAdmin;
