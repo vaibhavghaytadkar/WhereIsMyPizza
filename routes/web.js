@@ -2,8 +2,11 @@
 const homeController= require('../app/http/controller/homeController');
 const authController= require('../app/http/controller/authController');
 const cartController= require('../app/http/controller/customers/cartcontroller');
-
+const orderController=require('../app/http/controller/customers/orderController');
 const guest = require('../app/http/middleware/guest');
+const auth = require('../app/http/middleware/auth');
+const admin = require('../app/http/middleware/admin');
+const AdminOrderController = require('../app/http/controller/admin/orderController');
 function initRoutes(app){
     // app.get('/',function(req,res){
     //     res.render('home');
@@ -36,6 +39,15 @@ function initRoutes(app){
     // })
     app.get('/cart',cartController().index);
     app.post('/update-cart',cartController().update);
+
+  // CUSTOMERS ROUTE
+    app.post('/orders', auth ,orderController().store);
+
+    app.get('/customer/orders', auth,orderController().index);
+    
+    //admin routes
+    
+    app.get('/admin/orders', admin,AdminOrderController().index);
 
 }
 

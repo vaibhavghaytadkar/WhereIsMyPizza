@@ -19,7 +19,7 @@ const userSchema= new Schema({
     },
     role:{
         type:String,
-        defult:"customer"
+        default:'customer'
         
     }
 },{
