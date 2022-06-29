@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 const Schema = mongoose.Schema
-
+//menu scehmea
 const menuSchema= new Schema({
     _id:{
         type:Number,
