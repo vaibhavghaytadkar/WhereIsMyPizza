@@ -22,14 +22,14 @@ function updateCart(pizza){
           }).show();
        
     })
-    console.log('updating cart......');
+    // console.log('updating cart......');
 }
 
 addToCart.forEach((btn)=>{
     btn.addEventListener('click',(e)=>{
         // console.log('clicked');
         let pizza = JSON.parse(btn.dataset.pizza);
-        console.log('pizza is' , pizza);
+        // console.log('pizza is' , pizza);
          updateCart(pizza);
 
         // console.log('pizza--from app.js' ,pizza);
@@ -88,7 +88,7 @@ if(order){
     socket.emit('join',`order_${order._id}`)
 }
 let adminAreaPath = window.location.pathname;
-console.log('url name : ',adminAreaPath);
+// console.log('url name : ',adminAreaPath);
 if(adminAreaPath.includes('admin')){
     initAdmin(socket);
     socket.emit('join','adminRoom')
@@ -105,5 +105,5 @@ socket.on('orderUpdated',(data)=>{
         progressBar:false,
         layout:'topRight'
       }).show();
-    console.log(data);
+    // console.log(data);
 })

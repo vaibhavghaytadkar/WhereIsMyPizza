@@ -16,7 +16,7 @@ function statusController(){
                 
                 return res.redirect('/admin/orders');
             })
-            console.log('inside status update controller');
+            // console.log('inside status update controller');
 
         }
     }

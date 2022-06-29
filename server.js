@@ -122,9 +122,9 @@ const io = require('socket.io')(server);
 io.on('connection',(socket)=>{
   //join a separate room
 
-  console.log('socket id ',socket.id)
+  // console.log('socket id ',socket.id)
   socket.on('join',(orderId)=>{
-    console.log(orderId);
+    // console.log(orderId);
 
     socket.join(orderId)
   })

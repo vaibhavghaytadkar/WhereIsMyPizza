@@ -11,7 +11,7 @@ function orderController(){
 
                 return res.render('admin/orders');
             })
-            console.log('inside admin controller');
+            // console.log('inside admin controller');
 
         }
     }
