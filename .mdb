@@ -1,0 +1,10 @@
+{
+  "projectName": "whereismypizzza",
+  "meta": {
+    "type": "backend"
+  },
+  "backend": {
+    "platform": "node16"
+  },
+  "hash": "dc2633fb"
+}
